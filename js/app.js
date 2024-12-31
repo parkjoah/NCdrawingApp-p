@@ -1,5 +1,8 @@
+const saveBtn = document.getElementById("save");
+const textInput = document.getElementById("text");
+const fileInput = document.getElementById("file");
 const modeBtn = document.getElementById("mode-btn");
-const destroyBtn = document.getElementById("distroy-btn");
+const destroyBtn = document.getElementById("destroy-btn");
 const eraseBtn = document.getElementById("erase-btn");
 const colorOptions = Array.from(
     document.getElementsByClassName("color-option")
@@ -15,8 +18,8 @@ const CANVAS_HEIGHT = 800;
 
 canvas.width =CANVAS_WIDTH;
 canvas.height=CANVAS_HEIGHT;
-
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = "round";
 
 let isPainting = false;
 let isFilling = false;
@@ -75,10 +78,40 @@ function onDestroyClick(){
 
 function onEraseClick(){
     ctx.strokeStyle="white";
-    isFilling = false;
-
+    isFilling = false;  
 }
 
+function onFileChange(event){
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    const image = new Image()
+    image.src = url;
+    image.onload = function(){
+        ctx.drawImage(image,0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+        fileInput.value = null;
+    }
+}
+
+function onDoubleClick(event){
+    const text = textInput.value;
+    if(text !== ""){
+        ctx.save(); //ctx의 현재상태, 스타일, 색상 전부 저장
+        ctx.lineWidth = 1;
+        ctx.font = "68px serif"; //size, font-familly
+        ctx.strokeText(text, event.offsetX, event.offsetY);
+        ctx.restore();
+    }
+}
+
+function onSaveClick(){
+    const url = canvas.toDataURL();
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "myDrawing.png";
+    a.click();
+}
+
+canvas.addEventListener("dblclick",onDoubleClick);
 canvas.addEventListener("mousemove",onMove);
 canvas.addEventListener("mousedown",startPainting);
 canvas.addEventListener("mouseup",cancelPainting);
@@ -93,3 +126,5 @@ colorOptions.forEach(color => color.addEventListener("click",onColorClick));
 modeBtn.addEventListener("click",onModeClick);
 destroyBtn.addEventListener("click",onDestroyClick);
 eraseBtn.addEventListener("click",onEraseClick);
+fileInput.addEventListener("change",onFileChange);
+saveBtn.addEventListener("click",onSaveClick);
