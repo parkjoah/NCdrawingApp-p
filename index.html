@@ -1,51 +1,89 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meme Maker</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<body>
-   <div class="color-options">
-      <input type="color" id="color" />
-      <div class="color-option" style="background-color:
-   #cd84f1;" data-color="#cd84f1"></div>
-      <div class="color-option" style="background-color:
-   #ffcccc;" data-color="#ffcccc"></div>
-      <div class="color-option" style="background-color:
-   #ff4d4d;" data-color="#ff4d4d"></div>
-      <div class="color-option" style="background-color:
-   #ffaf40;" data-color="#ffaf40"></div>
-      <div class="color-option" style="background-color:
-   #fffa65;" data-color="#fffa65"></div>
-      <div class="color-option" style="background-color:
-   #32ff7e;" data-color="#32ff7e"></div>
-      <div class="color-option" style="background-color:
-   #7efff5;" data-color="#7efff5"></div>
-      <div class="color-option" style="background-color:
-   #18dcff;" data-color="#18dcff"></div>
-      <div class="color-option" style="background-color:
-   #7d5fff;" data-color="#7d5fff"></div>
-      <div class="color-option" style="background-color:
-   #4b4b4b;" data-color="#4b4b4b"></div>
-  </div>
+  <body>
+    <div id="leftContainer">
+      <div class="btns2 border">
+        <input
+          id="line-width"
+          type="range"
+          min="1"
+          max="10"
+          value="5"
+          step="0.5"
+        />
+        <button id="mode-btn">Fill</button>
+        <button id="destroy-btn">Destroy</button>
+        <button id="erase-btn">Erase</button>
+      </div>
+      <div class="color-options border">
+        <div
+          class="color-option"
+          style="background-color: #cd84f1"
+          data-color="#cd84f1"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #ffcccc"
+          data-color="#ffcccc"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #ff4d4d"
+          data-color="#ff4d4d"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #ffaf40"
+          data-color="#ffaf40"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #fffa65"
+          data-color="#fffa65"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #32ff7e"
+          data-color="#32ff7e"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #7efff5"
+          data-color="#7efff5"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #18dcff"
+          data-color="#18dcff"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #7d5fff"
+          data-color="#7d5fff"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #4b4b4b"
+          data-color="#4b4b4b"
+        ></div>
+        <input type="color" id="color" />
+      </div>
+    </div>
     <canvas></canvas>
-   <div class="btns">
-      <input id="line-width" type="range" min="1" max="10" value="5" step="0.5" />
-      <button id="mode-btn">Fill</button>
-      <button id="destroy-btn">Destroy</button>
-      <button id="erase-btn">Erase</button>
-      <label for = "file">
-         Add Photo
-      </label>
-      <input type="file" accept="image/*" id="file"/>
-      <input type="text" placeholder="Add text here.." id="text"/>
+
+    <div class="btns border">
+      <label for="file"> Add Photo </label>
+      <input type="file" accept="image/*" id="file" />
+      <input type="text" placeholder="Add text here.." id="text" />
       <button id="save">Save image</button>
       <script src="js/app.js"></script>
-   </div>
-</body>
-
+    </div>
+  </body>
 </html>
