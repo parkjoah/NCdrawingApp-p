@@ -1,0 +1,26 @@
+const modeBtns = Array.from(
+  document.querySelectorAll("fieldset:first-of-type button")
+);
+
+ACTIVE_CLASS = "activeBtn";
+
+const cursorList = [
+  "data:image/png;base64,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",
+];
+
+// canvas.style.cursor = `url(${cursorList[0]})`;
+
+function modeActive(btnClicked) {
+  modeBtns.forEach((btns) => {
+    btns.classList.remove(ACTIVE_CLASS);
+  });
+  btnClicked.target.classList.add(ACTIVE_CLASS);
+}
+modeBtns.forEach((btn) => {
+  for (i = 0; i < modeBtns.length; i++) {
+    if (modeBtns[i].className === ACTIVE_CLASS) {
+      canvas.style.cursor = `url(${cursorList[i]}) ,auto`;
+    }
+  }
+  btn.addEventListener("click", modeActive);
+});
