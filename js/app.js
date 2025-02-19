@@ -1,7 +1,8 @@
 const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
 const fileInput = document.getElementById("file");
-const modeBtn = document.getElementById("mode-btn");
+const drawBtn = document.getElementById("draw-btn");
+const fillBtn = document.getElementById("fill-btn");
 const destroyBtn = document.getElementById("destroy-btn");
 const eraseBtn = document.getElementById("erase-btn");
 const colorOptions = Array.from(
@@ -56,19 +57,16 @@ function onColorClick(event) {
   color.value = colorValue;
 }
 
-function onModeClick(event) {
-  if (isFilling) {
-    isFilling = false;
-    modeBtn.innerText = "Fill";
-  } else {
-    isFilling = true;
-    modeBtn.innerText = "Draw";
-  }
-}
 function onCanvasClick() {
   if (isFilling) {
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   }
+}
+function onDrawClick() {
+  isFilling = false;
+}
+function onFillClick() {
+  isFilling = true;
 }
 
 function onDestroyClick() {
@@ -123,7 +121,8 @@ color.addEventListener("change", onColorChange);
 
 colorOptions.forEach((color) => color.addEventListener("click", onColorClick));
 
-modeBtn.addEventListener("click", onModeClick);
+drawBtn.addEventListener("click", onDrawClick);
+fillBtn.addEventListener("click", onFillClick);
 destroyBtn.addEventListener("click", onDestroyClick);
 eraseBtn.addEventListener("click", onEraseClick);
 fileInput.addEventListener("change", onFileChange);
